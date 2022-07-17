@@ -7,8 +7,28 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="musicBean"
+    <context:property-placeholder location="classpath:musicBuilder.properties"/>
+
+    <bean id="classicalMusicBean"
           class="com.spring_example.beans.music.ClassicalMusic">
     </bean>
+
+    <bean id="rockMusicBean"
+          class="com.spring_example.beans.music.RockMusic">
+    </bean>
+
+    <bean id="kpopMusicBean"
+          class="com.spring_example.beans.music.KpopMusic">
+    </bean>
+
+    <bean id = "musicBuilder"
+          class="com.spring_example.builders.MusicBuilder">
+        <constructor-arg ref="rockMusicBean"/>
+        <property name="music" ref="kpopMusicBean"/>
+        <property name="pos" value="${musicBuilder.pos}"/>
+        <property name="volume" value="${musicBuilder.volume}"/>
+    </bean>
+
+
 
 </beans>

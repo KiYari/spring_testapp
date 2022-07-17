@@ -7,9 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class SpringApp {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
-        Music music = context.getBean("musicBean", Music.class);
-
-        MusicBuilder mb = new MusicBuilder(music);
-        System.out.println(mb.playMusic());
+        MusicBuilder mb = context.getBean("musicBuilder", MusicBuilder.class);
+        System.out.println(mb.playMusic() + "\nvolume: " + mb.getVolume());
     }
 }
